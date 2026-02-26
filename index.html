@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringzauber Browser</title>
+    <link rel="icon" type="image/x-icon" href="https://stenoip.github.io/ringzauber.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --aero-blue-light: #e0f7fa;
+            --aero-blue-mid: #b3e5fc;
+            --btn-cyan-top: #80deea;
+            --btn-cyan-bottom: #00bcd4;
+            --address-border: #03a9f4;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: #2b58f0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* --- Tab Bar & Toolbar --- */
+        .tab-bar { background: linear-gradient(to bottom, #cedce7 0%, #596a72 100%); display: flex; padding: 5px 5px 0 5px; gap: 2px; border-bottom: 1px solid #81d4fa; }
+        
+        /* Branded Tab Style */
+        .tab { 
+            background: linear-gradient(to bottom, #bbdefb, #64b5f6); 
+            border: 1px solid #42a5f5; 
+            border-bottom: none; 
+            border-radius: 8px 8px 0 0; 
+            padding: 6px 15px; 
+            min-width: 140px; 
+            font-size: 12px; 
+            color: #1a237e; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            cursor: pointer; 
+        }
+        .tab.active { background: white !important; color: black; font-weight: bold; border-bottom: 1px solid white; margin-bottom: -1px; z-index: 2; }
+        
+        .tab-icon { width: 16px; height: 16px; }
+
+        .toolbar { 
+            background: linear-gradient(to bottom, var(--aero-blue-light), var(--aero-blue-mid)); 
+            border-bottom: 2px solid #039be5; 
+            padding: 6px 10px; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+
+        .main-logo {
+            height: 24px;
+            margin-right: 5px;
+            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+        }
+
+        .address-bar { flex-grow: 1; background: linear-gradient(to bottom, #ffffff, #f1f3f4, #e0f7fa); border: 1px solid var(--address-border); border-radius: 18px; padding: 4px 15px; font-size: 13px; outline: none; }
+
+        /* --- Content Management --- */
+        .tab-content {
+            display: none; 
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+        }
+        .tab-content.active { display: block; }
+
+        /* --- Individual Tab Gradients --- */
+        #home { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        #github { background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); }
+        #stenoip { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+
+        /* --- Scroll Animation Styles --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+            margin: 100px auto;
+            display: block;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-section {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-logo {
+            width: 120px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .stock-photo {
+            width: 80%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .feature-text { color: white; font-size: 2.5rem; text-align: center; margin: 50px 0; }
+
+        .action-bar { background: rgba(179, 229, 252, 0.9); backdrop-filter: blur(10px); border-top: 2px solid #ffffff; padding: 10px; display: flex; justify-content: center; gap: 8px; }
+        .action-btn { background: linear-gradient(to bottom, var(--btn-cyan-top), var(--btn-cyan-bottom)); border: 1px solid #0097a7; border-radius: 15px; padding: 6px 15px; color: white; font-weight: bold; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div class="tab-bar" id="tabBar">
+        <div class="tab active" data-target="home">
+            <img src="https://stenoip.github.io/ringzauber.ico" class="tab-icon">
+            Download Ringzauber
+        </div>
+        <div class="tab" data-target="github">About</div>
+        <div class="tab" data-target="stenoip">Github Docs</div>
+    </div>
+
+    <div class="toolbar">
+        <img src="https://stenoip.github.io/ringzauber.ico" class="main-logo" alt="Ringzauber Logo">
+        <div class="address-bar">ringzauber://download</div>
+    </div>
+
+    <div id="viewportContainer" style="flex-grow: 1; position: relative; overflow: hidden;">
+        
+        <div class="tab-content active" id="home">
+            <div class="hero-section">
+                <img src="https://stenoip.github.io/ringzauber.ico" class="hero-logo">
+                <h1 style="font-size: 4rem; margin: 0;">Ringzauber 1.6</h1>
+                <p style="font-size: 1.5rem; opacity: 0.8;">The world's first A.I agentic Browser.</p>
+                <button class="action-btn" style="padding: 15px 40px; font-size: 1.2rem; margin-top: 20px;">Download Now</button>
+            </div>
+
+            <div class="reveal">
+                <h2 class="feature-text">Lightning Fast Browsing</h2>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800" class="stock-photo">
+            </div>
+
+            <div class="reveal">
+                <h2 class="feature-text">Privacy by Design</h2>
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800" class="stock-photo">
+            </div>
+
+            <div id="scroll-anchor" style="height: 100px;"></div>
+        </div>
+
+        <div class="tab-content" id="github">
+            <div class="hero-section"><h2>By Stenoip Company</h2></div>
+        </div>
+
+        <div class="tab-content" id="stenoip">
+            <div class="hero-section"><h2>Documentation</h2></div>
+        </div>
+
+    </div>
+
+    <div class="action-bar">
+        <button class="action-btn">The Marketplace</button>
+        <button class="action-btn">Terms</button>
+    </div>
+
+    <script>
+       var tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-target');
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        const homeTab = document.getElementById('home');
+        const anchor = document.getElementById('scroll-anchor');
+
+        homeTab.addEventListener('scroll', () => {
+            if (homeTab.scrollTop + homeTab.clientHeight >= homeTab.scrollHeight - 5) {
+                const newFeature = document.createElement('div');
+                newFeature.className = 'reveal';
+                newFeature.innerHTML = `
+                    <h2 class="feature-text">Endless Customization</h2>
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800" class="stock-photo">
+                `;
+                homeTab.insertBefore(newFeature, anchor);
+                observer.observe(newFeature);
+            }
+        });
+    </script>
+</body>
+</html>
