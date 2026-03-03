@@ -118,21 +118,26 @@
             });
         }, { threshold: 0.2 });
 
-        async function loadContent(targetId, fileName) {
-            const container = document.getElementById(targetId);
-            if (container.innerHTML.trim() !== "") return; // Already loaded
+        JavaScript
 
-            try {
-                const response = await fetch(fileName);
-                const html = await response.text();
-                container.innerHTML = html;
-                
-                // Observe new elements for scroll animation
-                container.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-            } catch (err) {
-                container.innerHTML = "<div class='hero-section'><h2>Failed to load content.</h2></div>";
-            }
-        }
+
+async function loadContent(targetId, fileName) {
+    const container = document.getElementById(targetId);
+    if (container.innerHTML.trim() !== "") return; 
+
+    try {
+        const response = await fetch(fileName);
+        const html = await response.text();
+        
+        // Injecting the HTML (including its internal <style> tags)
+        container.innerHTML = html;
+        
+        // Re-trigger the scroll observer for the newly injected elements
+        container.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    } catch (err) {
+        container.innerHTML = "<div class='error'>Failed to load content.</div>";
+    }
+}
 
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
