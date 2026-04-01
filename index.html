@@ -3,162 +3,397 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ringzauber Browser</title>
+    <title>Ringzauber Browser by Stenoip Company</title>
     <link rel="icon" type="image/x-icon" href="https://stenoip.github.io/ringzauber.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Download the world's first A.I agentic browser(since 13th Sep 2025)" />
     <style>
-        :root {
-            --aero-blue-light: #e0f7fa;
-            --aero-blue-mid: #b3e5fc;
-            --btn-cyan-top: #80deea;
-            --btn-cyan-bottom: #00bcd4;
-            --address-border: #03a9f4;
+        /* CSS Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0; padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background: #2b58f0;
-            height: 100vh;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #202124;
+            line-height: 1.5;
+            text-align: center;
+            background-color: #ffffff;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            background-color: #fff;
+            border-bottom: 1px solid #dadce0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-placeholder {
+            display: flex;
+            align-items: center;
+            font-size: 22px;
+            font-weight: 500;
+            color: #5f6368;
+            margin-right: 40px;
+        }
+
+        .logo-circle {
+            width: 32px;
+            height: 32px;
+            background-color: #ea4335;
+            border-radius: 50%;
+            margin-right: 8px;
+            background: conic-gradient(#ea4335 0deg 120deg, #fbbc05 120deg 240deg, #34a853 240deg 360deg);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .logo-circle::after {
+            content: '';
+            width: 14px;
+            height: 14px;
+            background-color: #4285f4;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #5f6368;
+            margin-right: 24px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #202124;
+        }
+
+        /* Shared Section Styles */
+        .section-container {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            letter-spacing: -1.5px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.1;
+        }
+
+        .highlight-badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: #e8f0fe;
+            color: #1967d2;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-size: 0.8em;
+            vertical-align: middle;
+            margin: 0 8px;
+        }
+
+        .highlight-badge.safe { background-color: #e8f0fe; color: #1967d2; }
+        .highlight-badge.ai { background-color: #fce8e6; color: #c5221f; }
+        .highlight-badge.yours { background-color: #fce8e6; color: #d93025; }
+        .highlight-badge.stenoip { background-color: #fef7e0; color: #e37400; }
+
+        /* Call to Action Button */
+        .download-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 28px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .download-btn:hover {
+            background-color: #1557b0;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 20px 80px;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            letter-spacing: -2px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.1;
+        }
+
+        .os-text {
+            display: block;
+            margin-top: 12px;
+            font-size: 12px;
+            color: #5f6368;
+        }
+
+        /* Terms and Checkbox */
+        .terms-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #5f6368;
+            gap: 12px;
+        }
+
+        .terms-text {
+            text-align: left;
+            max-width: 450px;
+        }
+
+        .terms-text a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        /* Feature Cards Grid */
+        .grid-layout {
+            display: grid;
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+        .feature-card {
+            background-color: #f8f9fa;
+            border-radius: 28px;
+            padding: 40px;
+            text-align: left;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
         }
 
-        .tab-bar { background: linear-gradient(to bottom, #cedce7 0%, #596a72 100%); display: flex; padding: 5px 5px 0 5px; gap: 2px; border-bottom: 1px solid #81d4fa; }
-        
-        .tab { 
-            background: linear-gradient(to bottom, #bbdefb, #64b5f6); 
-            border: 1px solid #42a5f5; 
-            border-bottom: none; 
-            border-radius: 8px 8px 0 0; 
-            padding: 6px 15px; 
-            min-width: 140px; 
-            font-size: 12px; 
-            color: #1a237e; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-            cursor: pointer; 
-        }
-        .tab.active { background: white !important; color: black; font-weight: bold; border-bottom: 1px solid white; margin-bottom: -1px; z-index: 2; }
-        .tab-icon { width: 16px; height: 16px; }
+        .feature-card.blue { background-color: #1a73e8; color: white; }
+        .feature-card.yellow { background-color: #fde293; color: #202124; }
 
-        .toolbar { 
-            background: linear-gradient(to bottom, var(--aero-blue-light), var(--aero-blue-mid)); 
-            border-bottom: 2px solid #039be5; 
-            padding: 6px 10px; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
+        .feature-card h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            opacity: 0.8;
         }
 
-        .main-logo { height: 24px; margin-right: 5px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2)); }
-        .address-bar { flex-grow: 1; background: linear-gradient(to bottom, #ffffff, #f1f3f4, #e0f7fa); border: 1px solid var(--address-border); border-radius: 18px; padding: 4px 15px; font-size: 13px; outline: none; }
+        .feature-card h2 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
 
-        .tab-content {
-            display: none; 
-            flex-grow: 1;
+        .mock-ui {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-top: auto;
+            color: #202124;
+        }
+
+    
+        .large-mockup {
             width: 100%;
-            height: 100%;
-            overflow-y: auto;
-            scroll-behavior: smooth;
+            height: 400px;
+            background-color: #f1f3f4;
+            border-radius: 24px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9aa0a6;
+            font-weight: 500;
+            border: 1px solid #dadce0;
         }
-        .tab-content.active { display: block; }
 
-        /* Gradients defined here so fragments can use them */
-        #home { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
-        #about { background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); }
-        #docs { background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); }
+        /* FAQ Section */
+        .faq-section {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
 
-        /* Shared Fragment Styles */
-        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; margin: 100px auto; display: block; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .hero-section { height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; }
-        .hero-logo { width: 120px; margin-bottom: 20px; animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-15px); } 100% { transform: translateY(0px); } }
-        .stock-photo { width: 80%; max-width: 800px; height: 400px; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); }
-        .feature-text { color: white; font-size: 2.5rem; text-align: center; margin: 50px 0; }
-        
-        .action-bar { background: rgba(179, 229, 252, 0.9); backdrop-filter: blur(10px); border-top: 2px solid #ffffff; padding: 10px; display: flex; justify-content: center; gap: 8px; }
-        .action-btn { background: linear-gradient(to bottom, var(--btn-cyan-top), var(--btn-cyan-bottom)); border: 1px solid #0097a7; border-radius: 15px; padding: 6px 15px; color: white; font-weight: bold; cursor: pointer; }
+        .faq-item {
+            border-bottom: 1px solid #dadce0;
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            color: #1a73e8;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .faq-item::after {
+            content: '+';
+            font-size: 1.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .section-title { font-size: 2.5rem; }
+            .grid-2, .grid-3 { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="tab-bar" id="tabBar">
-        <div class="tab active" data-target="home" data-file="home.html" data-url="ringzauber://download">
-            <img src="https://stenoip.github.io/ringzauber.ico" class="tab-icon">
-            Download Ringzauber
+    <header>
+        <div class="logo-placeholder">
+            <img src="">
+            Ringzauber
         </div>
-        <div class="tab" data-target="about" data-file="about.html" data-url="ringzauber://about">About</div>
-        <div class="tab" data-target="docs" data-file="docs.html" data-url="ringzauber://docs">Github Docs</div>
-    </div>
+        <nav>
+            <a href="#ai">AI Innovations</a>
+            <a href="#safe">Safety</a>
+            <a href="#yours">Yours</a>
+            <a href="#stenoip">By Stenoip</a>
+        </nav>
+    </header>
 
-    <div class="toolbar">
-        <img src="https://stenoip.github.io/ringzauber.ico" class="main-logo" alt="Ringzauber Logo">
-        <input type="text" class="address-bar" id="addressDisplay" value="ringzauber://download" readonly>
-    </div>
-
-    <div id="viewportContainer" style="flex-grow: 1; position: relative; overflow: hidden;">
-        <div class="tab-content active" id="home"></div>
-        <div class="tab-content" id="about"></div>
-        <div class="tab-content" id="docs"></div>
-    </div>
-
-    <div class="action-bar">
-        <button class="action-btn">The Marketplace</button>
-        <button class="action-btn">Terms</button>
-    </div>
-
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.2 });
-
-      
-
-
-async function loadContent(targetId, fileName) {
-    const container = document.getElementById(targetId);
-    if (container.innerHTML.trim() !== "") return; 
-
-    try {
-        const response = await fetch(fileName);
-        const html = await response.text();
+    <section class="hero">
+        <img src="https://raw.githubusercontent.com/stenoip/Ringzauber/main/ringzauber.ico" width: "80" height: "80">
+        <h1>The World's First <span class="highlight-badge safe"> Agentic Browser!</span></h1>
         
-        // Injecting the HTML (including its internal <style> tags)
-        container.innerHTML = html;
-        
-        // Re-trigger the scroll observer for the newly injected elements
-        container.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    } catch (err) {
-        container.innerHTML = "<div class='error'>Failed to load content.</div>";
-    }
-}
+        <a href="https://github.com/stenoip/Ringzauber/releases/tag/ringzauber" class="download-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Download Ringzauber
+        </a>
+        <span class="os-text">For Windows 11/10 64-bit</span>
 
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const target = tab.getAttribute('data-target');
-                const file = tab.getAttribute('data-file');
-                const url = tab.getAttribute('data-url');
-
-                // UI Updates
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        <div class="terms-container">
+            <input type="checkbox" id="stats-checkbox" checked>
+            <div class="terms-text">
+                <label for="stats-checkbox">By downloading Ringzauber, you agree to the <a href="#">Stenoip Company Terms of Service</a></label>
+                <br><br>
                 
-                tab.classList.add('active');
-                document.getElementById(target).classList.add('active');
-                document.getElementById('addressDisplay').value = url;
+            </div>
+        </div>
+    </section>
 
-                loadContent(target, file);
-            });
-        });
+    <section id="ai" class="section-container">
+        <h2 class="section-title">Navigate to your favourite sites in plain <span class="highlight-badge ai">English</span></h2>
+        <div class="large-mockup" style="background-color: #f8f9fa;">
+            [ AI Integration UI Placeholder - Smart Chat & Page Summarization ]
+        </div>
+    </section>
 
-        // Initial Load
-        window.onload = () => loadContent('home', 'home.html');
-    </script>
+    <section id="safe" class="section-container">
+        <h2 class="section-title">Stay <span class="highlight-badge safe">safe</span> while you browse</h2>
+        
+        <div class="grid-layout grid-2">
+            <div class="feature-card blue">
+                <h3>Password Manager</h3>
+                <h2>Use strong passwords on every site.</h2>
+                <div class="mock-ui">
+                    <div style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">Username: user@stenoip.com</div>
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <span>Password: ••••••••••</span>
+                        <span style="color:#1a73e8; font-size:0.8em; font-weight:bold;">Use Saved?</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="feature-card">
+                    <h3>Wipe websites on exit</h3>
+                    <h2>Clear browsing history just one click.</h2>
+                </div>
+                <div class="feature-card blue" style="background-color: #1557b0;">
+                    <h3>Privacy Guide</h3>
+                    <h2>Keep your privacy under your control with easy-to-use settings.</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="yours" class="section-container">
+        <h2 class="section-title">Make it <span class="highlight-badge yours">yours</span> and take it with you</h2>
+        <div class="grid-layout grid-2">
+            <div class="large-mockup" style="margin-top: 0;">
+                [ Theme Selection UI Placeholder ]
+            </div>
+            <div style="text-align: left; display: flex; flex-direction: column; justify-content: center; padding: 40px;">
+                <div style="border-left: 3px solid #1a73e8; padding-left: 20px; margin-bottom: 30px;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Customize your Ringzauber</h2>
+                    <p style="color: #5f6368;">Choose horizontal tabs, A.I personality, search engine and more!</p>
+                </div>
+                <div style="padding-left: 20px; margin-bottom: 30px;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Browse across devices</h2>
+                </div>
+                <div style="padding-left: 20px;">
+                    <h2 style="font-size: 1.5rem;">Save time with autofill</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="stenoip" class="section-container">
+        <h2 class="section-title">The browser built <br> by <span class="highlight-badge stenoip">Stenoip Company</span></h2>
+        
+        <div class="grid-layout grid-1">
+            <div class="feature-card yellow">
+                <h3>Oodles Metasearch</h3>
+                <h2>The search bar you love, built right in.</h2>
+                <div class="mock-ui">
+                    Access a world of knowledge at your fingertips. Check the weather, solve math equations and get instant search results, all contained inside your browser's address bar.
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid-layout grid-2" style="margin-top: 24px;">
+            <div class="feature-card yellow">
+                <h3>Stenoip Play</h3>
+                <h2>Play the best minigames on the web.</h2>
+            </div>
+            <div class="feature-card" style="background-color: white; border: 1px solid #dadce0;">
+                <h3>Stenoip Offices</h3>
+                <h2>Get things done, with or without Wi-Fi.</h2>
+                <div style="font-size: 2rem; margin-top: 20px;">[Office Icons]</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container faq-section">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 60px;">FAQ</h2>
+        
+        <div class="faq-item">How do I install Ringzauber?</div>
+        <div class="faq-item">Does Ringzauber work on my operating system?</div>
+        <div class="faq-item">How do I make Ringzauber my default browser?</div>
+        <div class="faq-item">What are Ringzauber's safety settings?</div>
+    </section>
+
 </body>
 </html>
