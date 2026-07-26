@@ -1,399 +1,398 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ringzauber Browser by Stenoip Company</title>
-    <link rel="icon" type="image/x-icon" href="https://stenoip.github.io/ringzauber.ico">
-    <meta name="description" content="Download the world's first A.I agentic browser(since 13th Sep 2025)" />
-    <style>
-        /* CSS Reset */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #202124;
-            line-height: 1.5;
-            text-align: center;
-            background-color: #ffffff;
-        }
-
-        /* Header Navigation */
-        header {
-            display: flex;
-            align-items: center;
-            padding: 16px 24px;
-            background-color: #fff;
-            border-bottom: 1px solid #dadce0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo-placeholder {
-            display: flex;
-            align-items: center;
-            font-size: 22px;
-            font-weight: 500;
-            color: #5f6368;
-            margin-right: 40px;
-        }
-
-        .logo-circle {
-            width: 32px;
-            height: 32px;
-            background-color: #ea4335;
-            border-radius: 50%;
-            margin-right: 8px;
-            background: conic-gradient(#ea4335 0deg 120deg, #fbbc05 120deg 240deg, #34a853 240deg 360deg);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .logo-circle::after {
-            content: '';
-            width: 14px;
-            height: 14px;
-            background-color: #4285f4;
-            border-radius: 50%;
-            border: 2px solid white;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #5f6368;
-            margin-right: 24px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        nav a:hover {
-            color: #202124;
-        }
-
-        /* Shared Section Styles */
-        .section-container {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 3.5rem;
-            letter-spacing: -1.5px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            line-height: 1.1;
-        }
-
-        .highlight-badge {
-            display: inline-flex;
-            align-items: center;
-            background-color: #e8f0fe;
-            color: #1967d2;
-            padding: 8px 24px;
-            border-radius: 40px;
-            font-size: 0.8em;
-            vertical-align: middle;
-            margin: 0 8px;
-        }
-
-        .highlight-badge.safe { background-color: #e8f0fe; color: #1967d2; }
-        .highlight-badge.ai { background-color: #fce8e6; color: #c5221f; }
-        .highlight-badge.yours { background-color: #fce8e6; color: #d93025; }
-        .highlight-badge.stenoip { background-color: #fef7e0; color: #e37400; }
-
-        /* Call to Action Button */
-        .download-btn {
-            background-color: #1a73e8;
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 28px;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-
-        .download-btn:hover {
-            background-color: #1557b0;
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 120px 20px 80px;
-        }
-
-        .hero h1 {
-            font-size: 5rem;
-            letter-spacing: -2px;
-            font-weight: 700;
-            margin-bottom: 40px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.1;
-        }
-
-        .os-text {
-            display: block;
-            margin-top: 12px;
-            font-size: 12px;
-            color: #5f6368;
-        }
-
-        /* Terms and Checkbox */
-        .terms-container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #5f6368;
-            gap: 12px;
-        }
-
-        .terms-text {
-            text-align: left;
-            max-width: 450px;
-        }
-
-        .terms-text a {
-            color: #1a73e8;
-            text-decoration: none;
-        }
-
-        /* Feature Cards Grid */
-        .grid-layout {
-            display: grid;
-            gap: 24px;
-            margin-top: 40px;
-        }
-
-        .grid-2 { grid-template-columns: 1fr 1fr; }
-        .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
-
-        .feature-card {
-            background-color: #f8f9fa;
-            border-radius: 28px;
-            padding: 40px;
-            text-align: left;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .feature-card.blue { background-color: #1a73e8; color: white; }
-        .feature-card.yellow { background-color: #fde293; color: #202124; }
-
-        .feature-card h3 {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-            opacity: 0.8;
-        }
-
-        .feature-card h2 {
-            font-size: 2rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            letter-spacing: -0.5px;
-        }
-
-        .mock-ui {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-top: auto;
-            color: #202124;
-        }
+<html class="consumer js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers no-applicationcache svg inlinesvg smil svgclippaths dz_addn_flg build-stable Ringzauber win win8 win64 win64-capable twisty-js" data-country="us" lang="en" id="win64" style="--wm-toolbar-height: 67px;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <head>
+    
+    <link href="chrome.min.css" rel="stylesheet">
 
     
-        .large-mockup {
-            width: 100%;
-            height: 400px;
-            background-color: #f1f3f4;
-            border-radius: 24px;
-            margin-top: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9aa0a6;
-            font-weight: 500;
-            border: 1px solid #dadce0;
-        }
+    <meta content="initial-scale=1, minimum-scale=1, width=device-width" name="viewport">
+    <meta content="Ringzauber is a fast, simple and secure web browser, built for the modern web." name="description">
+      <link rel="icon" type="image/x-icon" href="https://stenoip.github.io/ringzauber.ico">
+    <title>
+      Ringzauber Browser
+    </title>
 
-        /* FAQ Section */
-        .faq-section {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
+ </head>
+  <body class="" id="grid">
 
-        .faq-item {
-            border-bottom: 1px solid #dadce0;
-            padding: 24px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            color: #1a73e8;
-            font-weight: 500;
-            font-size: 1.1rem;
-        }
-
-        .faq-item::after {
-            content: '+';
-            font-size: 1.5rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo-placeholder">
-            <img src="">
-            Ringzauber
+   
+  
+ 
+    <div class="compact fatnav-header" id="header">
+      <div class="g-section no-collapse">
+        <div class="g-unit g-first" id="header-logo">
+          <a href="https://stenoip.github.io/ringzauber-site/"><img alt="Ringzauber" data-g-event="nav-logo" data-g-label="consumer-home" id="logo" src="https://stenoip.github.io/ringzauber.ico"></a>
         </div>
-        <nav>
-            <a href="#ai">AI Innovations</a>
-            <a href="#safe">Safety</a>
-            <a href="#yours">Yours</a>
-            <a href="#stenoip">By Stenoip</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <img src="https://raw.githubusercontent.com/stenoip/Ringzauber/main/ringzauber.ico" width: "80" height: "80">
-        <h1>The World's First <span class="highlight-badge safe"> Agentic Browser!</span></h1>
-        
-        <a href="https://github.com/stenoip/Ringzauber/releases/tag/ringzauber" class="download-btn">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Download Ringzauber
-        </a>
-        <span class="os-text">For Windows 11/10 64-bit</span>
-
-        <div class="terms-container">
-            <input type="checkbox" id="stats-checkbox" checked>
-            <div class="terms-text">
-                <label for="stats-checkbox">By downloading Ringzauber, you agree to the <a href="#">Stenoip Company Terms of Service</a></label>
-                <br><br>
+        <div id="fat-nav">
+          <ul class="nav-l1">
+            <li class="nav-l1-menuitem nav-l1-download active">
+              <a class="nav-top" data-g-event="fn-dropdown" data-g-label="browser-home" data-link="../../../Ringzauber/browser/" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/">Download <span class="submenu-icon">&nbsp;</span></a>
+              <ul class="nav-l2" id="nav-l4-download">
+                <li id="nav-l2-pc">
+                  <a data-g-event="fn-dropdown" data-g-label="browser-personal-computers" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/index.html"><span class="nav-hero"></span>
+                  <span>For personal computers</span></a>
+                </li>
+                <li id="nav-l2-mobile">
+                  <a data-g-event="fn-dropdown" data-g-label="browser-mobile" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/mobile/index.html"><span class="nav-hero"></span>
+                  <span>For mobile</span></a>
+                </li>
+                <li class="nav-l2-other">
+                  <ul class="nav-l3">
+                    <li>
+                      <a data-g-event="fn-dropdown" data-g-label="browser-features" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/features.html">Features</a>
+                    </li>
+                    <li>
+                      <a data-g-event="fn-dropdown" data-g-label="browser-support" href="https://support.stenoip.github.io/ringzauber-site/Ringzauber/?hl=en">Support</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-l1-menuitem nav-l1-customize">
+              <a class="nav-top" data-g-event="fn-dropdown" data-g-label="setup-home" data-link="../../../Ringzauber/webstore/features.html" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/webstore/features.html">Set up <span class="submenu-icon">&nbsp;</span></a>
+              <ul class="nav-l2" id="nav-l2-customize">
+                <li id="nav-l2-signin">
+                  <a data-g-event="fn-dropdown" data-g-label="setup-setup" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/signin.html"><span class="nav-hero"></span> <span>Set up
+                  Ringzauber</span></a>
+                </li>
+              
+                <li id="nav-l2-themes">
+                  <a data-g-event="fn-dropdown" data-g-label="setup-themes" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/webstore/themes.html"><span class="nav-hero"></span>
+                  <span>Themes</span></a>
+                </li>
+                <li class="nav-l2-other">
+                  <ul class="nav-l3">
+                    <li>
+                      <a data-g-event="fn-dropdown" data-g-label="custom-cloudprint" href="https://stenoip.github.io/ringzauber-site/intl/en/cloudprint/learn/">Cloud Print</a>
+                    </li>
+                    <li>
+                      <a data-g-event="fn-dropdown" data-g-label="custom-blog" href="http://Ringzauber.blogspot.com/">Ringzauber Blog</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+           
+            <li class="nav-l1-menuitem nav-l1-more">
+              <a class="nav-top last-nav-link" data-g-event="fn-dropdown" data-g-label="Ringzaubercast-home" data-link="../../../Ringzauber/devices/Ringzaubercast/" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/devices/Ringzaubercast/">Github<span class="submenu-icon">&nbsp;</span></a>
+              <ul class="nav-l2" id="nav-l2-cast">
+                <li id="nav-l2-cast-overview">
+                  <a data-g-event="fn-dropdown" data-g-label="Ringzaubercast-overview" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/devices/Ringzaubercast/"><span class="nav-hero"></span>
+                  <span>README overview</span></a>
+                </li>
+                <li id="nav-l2-cast-support">
+                  <a data-g-event="fn-dropdown" data-g-label="Ringzaubercast-apps" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/devices/Ringzaubercast/apps.html"><span class="nav-hero"></span>
+                  <span>License</span></a>
+                </li>
+                <li id="nav-l2-cast-setup">
+                  <a data-g-event="fn-dropdown" data-g-label="Ringzaubercast-learn" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/devices/Ringzaubercast/learn.html"><span class="nav-hero"></span>
+                  <span>Releases</span></a>
+                </li>
                 
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="browser-landing" id="main">
+      <div class="compact browser-benefits">
+        <section id="marquee">
+          <h1>
+            Get the fast, free web browser of the decade
+          </h1>
+          <p class="browser-promo">
+            One browser for your computer, phone and tablet
+          </p><a class="button eula-download-button download-button desktop-only hide-cros" data-g-event="cta" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download Ringzauber</a>
+          <div class="desktop-only">
+            <p class="content-win">
+              <span class="alt-platform">For Windows 10/11</span>
+            </p>
+          
+            
+            <p>
+              <a class="show-dialog-options hide-cros" data-g-event="cta" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download Ringzauber
+              for another platform</a>
+            </p>
+          </div><img alt="" class="hi-dpi empty-area section-hero" src="laptop_with_ringzauber.png">
+          <div class="no-Ringzauber mobile-only">
+            <a class="button download-button mobile-android" data-g-event="cta" data-g-label="desktop-android-download" href="https://play.google.com/ringzauber-site/store/apps/details?id=com.android.Ringzauber&amp;pcampaignid=websitedesktopresponsive">
+            Download for Android</a> <a class="button download-button mobile-ios" data-g-event="cta" data-g-label="desktop-ios-download" href="https://itunes.apple.com/us/app/Ringzauber/id535886823">Download for iOS</a>
+            <p class="mobile-android">
+              <a href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/mobile/">Learn more about Ringzauber for Android</a>
+            </p>
+            <p class="mobile-ios">
+              <a href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/mobile/">Learn more about Ringzauber for iOS</a>
+            </p>
+            <p>
+              <span class="download-link">Visit from your PC to download Ringzauber for desktop</span>
+            </p>
+            <p class="email">
+              <a href="mailto:/?subject=Download%20Ringzauber%20browser%20for%20your%20desktop&amp;body=https://stenoip.github.io/ringzauber-site/Ringzauber/browser/desktop/">
+              Email link to me.</a>
+            </p>
+          </div>
+          <div class="Ringzauber-specific mobile-only">
+            <p>
+              <span class="download-link">Visit from your PC to download Ringzauber for desktop</span>
+            </p><a class="button download-button mobile-only" href="mailto:/?subject=Download%20Ringzauber%20browser%20for%20your%20desktop&amp;body=https://stenoip.github.io/ringzauber-site/Ringzauber/browser/desktop/">Email
+            link to me</a>
+            <p class="mobile-android">
+              <a href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/mobile/">Learn more about Ringzauber for Android</a>
+            </p>
+            <p class="mobile-ios">
+              <a href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/mobile/">Learn more about Ringzauber for iOS</a>
+            </p>
+          </div>
+        </section>
+        <section class="faster-web">
+          <h2>
+            A.I Technology
+          </h2><img alt="" class="hi-dpi section-hero" src="the_ai_thinker.jpg">
+          <div class="g-tpl-nest">
+            <div class="g-unit g-col-6">
+              <h3>
+                A.I Panels
+              </h3>
+              <p class="separator">
+                The power of personal search is in your hands! Choose from Oodles Metasearch to Startpage to Ecosia and <strong>MORE!</strong>
+                Private A.I mode and overviews in <a class="link" href="https://github.com/stenoip/oodles">Oodles Homeport</a> provides a futuristic experience
+                compared to <a class="link" href="https://">SearXNG</a>
+              </p>
             </div>
-        </div>
-    </section>
-
-    <section id="ai" class="section-container">
-        <h2 class="section-title">Navigate to your favourite sites in plain <span class="highlight-badge ai">English</span></h2>
-        <div class="large-mockup" style="background-color: #f8f9fa;">
-            [ AI Integration UI Placeholder - Smart Chat & Page Summarization ]
-        </div>
-    </section>
-
-    <section id="safe" class="section-container">
-        <h2 class="section-title">Stay <span class="highlight-badge safe">safe</span> while you browse</h2>
-        
-        <div class="grid-layout grid-2">
-            <div class="feature-card blue">
-                <h3>Password Manager</h3>
-                <h2>Use strong passwords on every site.</h2>
-                <div class="mock-ui">
-                    <div style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">Username: user@stenoip.com</div>
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span>Password: ••••••••••</span>
-                        <span style="color:#1a73e8; font-size:0.8em; font-weight:bold;">Use Saved?</span>
-                    </div>
-                </div>
+            <div class="g-unit g-col-6">
+              <h3>
+                The Power of A.I
+              </h3>
+              <p class="separator">
+               Ask, analyse and research with Praterich A.I. Access models from Groq and Gemini which are
+               deeply rooted into the HTML. Private and Secure on your device. <a class="links" href="https://stenoip.github.io/praterich/about">Learn more about Praterich A.I</a>
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="pick-up">
+          <h2>
+            Pick up where you left off (Coming Soon)
+          </h2>
+          <p class="desktop-only separator">
+            Ringzauber WILL bring your open tabs, files and recent searches from your computer to your
+            phone or tablet and vice versa. That way you WILL have your web on all of your devices.
+            Just sign in on your other devices to start syncing. <a class="links" href="https://support.stenoip.github.io/ringzauber-site/Ringzauber/answer/2392075">Learn more</a>
+          </p><img alt="" class="empty-area hi-dpi section-hero" src="https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,fl_progressive,q_auto,w_1024/6294f6a3aa822d001dc042aa.jpg">
+          <p class="mobile-only separator">
+             Ringzauber WILL bring your open tabs, files and recent searches from your computer to your
+            phone or tablet and vice versa. That way you WILL have your web on all of your devices.
+            Just sign in on your other devices to start syncing. <a class="links" href="https://support.stenoip.github.io/ringzauber-site/Ringzauber/answer/2392075">Learn more</a>
+          </p>
+        </section>
+        <section class="smarter-web">
+          <h2>
+            Experience a smarter web
+          </h2>
+          <p class="desktop-only separator">
+           Get the best of Oodles when you browse with Ringzauber. Ringzauber and Oodles work together to
+            bring you more relevant suggestions and features across Stenoip Company products including Voice
+            Search and Oodles Maps. <a class="links" href="https://stenoip.github.io/ringzauber-site/landing/now/#getitRingzauber">Enable Oodles Now</a>
+          </p><img alt="" class="empty-area hi-dpi section-hero" src="oodles_maps.png">
+          <p class="mobile-only separator">
+            Get the best of Oodles when you browse with Ringzauber. Ringzauber and Oodles work together to
+            bring you more relevant suggestions and features across Stenoip Company products including Voice
+            Search and Oodles Maps.  <a class="links" href="https://stenoip.github.io/ringzauber-site/landing/now/#getitRingzauber">Enable Oodles Now</a>
+          </p>
+        </section>
+        <section class="make-yours">
+          <h2>
+            Make Ringzauber yours
+          </h2>
+          <p class="desktop-only separator">
+            Browse just the way you'd like with Ringzauber themes, apps and extentions. Get straight to
+            your favorite web destinations with bookmarks and start pages. Once you've set up
+            Ringzauber, your customizations will be kept in sync across all of your devices. <a class="links" href="https://Ringzauber.stenoip.github.io/ringzauber-site/webstore/category/themes">Start customizing</a>
+          </p><img alt="" class="empty-area hi-dpi section-hero" src="./Ringzauber Browser_files/benefits-4.jpg">
+          <p class="mobile-only separator">
+            Browse just the way you'd like with Ringzauber themes, apps and extentions. Get straight to
+            your favorite web destinations with bookmarks and start pages. Once you've set up
+            Ringzauber, your customizations will be kept in sync across all of your devices. <a class="links" href="https://Ringzauber.stenoip.github.io/ringzauber-site/webstore/category/themes">Start customizing</a>
+          </p>
+        </section>
+        <section class="g-tpl-nest desktop-only get-Ringzauber">
+          <div class="g-unit g-col-7">
+            <img alt="" class="empty-area hi-dpi section-hero" src="ringzauber_with_the_stars.png">
+          </div>
+          <div class="g-unit g-col-5 Ringzauber-promo">
+            <h2 class="content-mac">
+              Get Ringzauber for Mac
+            </h2>
+            <h2 class="content-win">
+              Get Ringzauber for Windows
+            </h2>
+            <h2 class="content-win64">
+              Get Ringzauber for Windows
+            </h2>
+         
+            <p class="browser-promo">
+              One browser for your laptop, phone and tablet
+            </p><a class="button eula-download-button" data-g-event="cta" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download
+            Ringzauber</a>
+            <p class="content-win desktop-only">
+              <span class="alt-platform">For Windows 10/11</span>
+            </p>
+     
+            <p class="content-mac desktop-only">
+              <span class="alt-platform">For Mac OS X 10.6 or later</span>
+            </p>
+            <p class="content-linux desktop-only">
+              <span class="alt-platform">Debian/Ubuntu/Fedora/openSUSE</span>
+            </p>
+           
+            <p>
+              <a class="show-dialog-options hide-cros desktop-only" data-g-event="cta" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download Ringzauber for another platform</a>
+            </p>
+          </div>
+        </section>
+        <section class="mobile-only Ringzauber-specific">
+          <a class="button download-button" href="mailto:/?subject=Download%20Ringzauber%20browser%20for%20your%20desktop&amp;body=https://stenoip.github.io/ringzauber-site/Ringzauber/browser/desktop/">
+          Email link to me</a>
+        </section>
+        <section class="mobile-only no-Ringzauber">
+          <a class="button download-button mobile-android" data-g-event="cta" data-g-label="desktop-android-download" href="https://play.stenoip.github.io/ringzauber-site/store/apps/details?id=com.android.Ringzauber&amp;pcampaignid=websitedesktopresponsive">
+          Download for Android</a> <a class="button download-button mobile-ios" data-g-event="cta" data-g-label="desktop-ios-download" href="https://itunes.apple.com/us/app/Ringzauber/id535886823">Download for iOS</a>
+        </section>
+      </div>
+      <div id="footer">
+        <div class="compact">
+          <div class="g-section g-tpl-nest">
+            <div class="g-unit g-first">
+              <h4>
+                <a data-g-event="nav-footer" data-g-label="consumer-home" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/index.html">Products</a>
+              </h4>
+              <ul>
+                <li>
+                  <a data-g-event="nav-footer" data-g-label="consumer-browser" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/">Browser</a>
+                </li>
+                <li>
+                  <a data-g-event="nav-footer" data-g-label="consumer-devices" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/devices/">Devices</a>
+                </li>
+                <li>
+                 <!-- <a data-g-event="nav-footer" data-g-label="consumer-webstore" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/webstore/">Ringzauber Store</a> -->
+                </li>
+              </ul>
             </div>
             
-            <div style="display: flex; flex-direction: column; gap: 24px;">
-                <div class="feature-card">
-                    <h3>Wipe websites on exit</h3>
-                    <h2>Clear browsing history just one click.</h2>
-                </div>
-                <div class="feature-card blue" style="background-color: #1557b0;">
-                    <h3>Privacy Guide</h3>
-                    <h2>Keep your privacy under your control with easy-to-use settings.</h2>
-                </div>
+            
+            <div class="g-unit">
+              <h4>
+                Dev and Partners
+              </h4>
+              <ul>
+                <li>
+                  <a data-g-event="nav-footer" data-g-label="dev-chromium" href="http://www.chromium.org/">Chromium</a>
+                </li>
+                <li>
+                  <a data-g-event="nav-footer" data-g-label="dev-Ringzauberos" href="https://github.com/stenoip/ringzauber">Github</a>
+                </li>
+              
+               
+              </ul>
             </div>
+            
+          </div>
         </div>
-    </section>
-
-    <section id="yours" class="section-container">
-        <h2 class="section-title">Make it <span class="highlight-badge yours">yours</span> and take it with you</h2>
-        <div class="grid-layout grid-2">
-            <div class="large-mockup" style="margin-top: 0;">
-                [ Theme Selection UI Placeholder ]
+        <div id="sub-footer">
+          <div class="g-section g-tpl-50-50 g-split">
+            <div class="g-unit g-first">
+              <ul id="Ringzauber-footer-global">
+                <li>
+                  <a href="https://stenoip.github.io/ringzauber-site/">Stenoip Company</a>
+                </li>
+                <li>
+                  <a data-g-event="nav-subfooter" data-g-label="about" href="https://stenoip.github.io/ringzauber-site/about/">About
+                  Stenoip Company</a>
+                </li>
+                <li>
+                  <a data-g-event="nav-subfooter" data-g-label="privacy" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/privacy/">Ringzauber Privacy</a>
+                </li>
+                <li>
+                  <a data-g-event="nav-subfooter" data-g-label="help" href="https://support.stenoip.github.io/ringzauber-site/Ringzauber/?hl=en&amp;p=mktg_help">Help</a>
+                </li>
+              </ul>
             </div>
-            <div style="text-align: left; display: flex; flex-direction: column; justify-content: center; padding: 40px;">
-                <div style="border-left: 3px solid #1a73e8; padding-left: 20px; margin-bottom: 30px;">
-                    <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Customize your Ringzauber</h2>
-                    <p style="color: #5f6368;">Choose horizontal tabs, A.I personality, search engine and more!</p>
-                </div>
-                <div style="padding-left: 20px; margin-bottom: 30px;">
-                    <h2 style="font-size: 1.5rem; margin-bottom: 10px;">Browse across devices</h2>
-                </div>
-                <div style="padding-left: 20px;">
-                    <h2 style="font-size: 1.5rem;">Save time with autofill</h2>
-                </div>
+            
+              <div id="g-plus-badge">
+                <a data-g-event="nav-subfooter" data-g-label="plus" href="https://plus.stenoip.github.io/ringzauber-site/100585555255542998765?prsrc=3" target="_blank">Add us on
+                <img alt="" data-g-event="nav-subfooter" data-g-label="plus" src="./Ringzauber Browser_files/gplus-16.png"></a>
+              </div>
+              <div style="position: absolute; width: 450px; left: -10000px;" id="___plusone_0"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none" tabindex="0" vspace="0" width="100%" id="I0_1427771815148" name="I0_1427771815148" src="./Ringzauber Browser_files/fastbutton.html" allow="autoplay &#39;self&#39;; fullscreen &#39;self&#39;" data-ruffle-polyfilled=""></iframe></div><div class="g-plusone" data-annotation="bubble" data-href="http://stenoip.github.io/ringzauber-site/Ringzauber" data-size="small" data-gapiscan="true" data-onload="true" data-gapistub="true"></div>
             </div>
+          </div>
         </div>
-    </section>
-
-    <section id="stenoip" class="section-container">
-        <h2 class="section-title">The browser built <br> by <span class="highlight-badge stenoip">Stenoip Company</span></h2>
-        
-        <div class="grid-layout grid-1">
-            <div class="feature-card yellow">
-                <h3>Oodles Metasearch</h3>
-                <h2>The search bar you love, built right in.</h2>
-                <div class="mock-ui">
-                    Access a world of knowledge at your fingertips. Check the weather, solve math equations and get instant search results, all contained inside your browser's address bar.
-                </div>
-            </div>
+      </div>
+      <iframe frameborder="0" src="javascript:&quot;&quot;" class="modal-dialog-bg" style="border: 0px; vertical-align: bottom; display: none; opacity: 0;" allow="autoplay &#39;self&#39;; fullscreen &#39;self&#39;" data-ruffle-polyfilled="" src="./Ringzauber Browser_files/saved_resource.html"></iframe><div class="modal-dialog-bg" style="display: none; opacity: 0.5;"></div><div class="modal-dialog mode-eula win platform-win" id="eula-dialog" aria-labelledby=":0" role="dialog" style="display: none;">
+        <a data-g-event="eula" data-g-label="eula-close" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#" id="eula-close"><span>×</span></a>
+        <div id="download-options">
+          <div class="g-section">
+            <h2>
+              Download Ringzauber
+            </h2>
+          </div>
+          <div class="g-section g-tpl-nest">
+            <div class="g-unit g-col-5">
+              <div class="eula-win win64-incapable">
+                <a class="button eula-download-button" data-g-event="cta" data-set-platform="win" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download for Windows</a>
+                <p>
+                  <span class="alt-platform">For Windows 10/11</span>
+                </p>
+              </div>
+              <div class="eula-win win64-capable">
+                <a class="button eula-download-button" data-g-event="cta" data-set-platform="win" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download for Windows</a>
+                <p>
+                  <span class="alt-platform">For Windows 10/11</span>
+                </p>
+              </div>
+              <div class="eula-win64">
+                <a class="button eula-download-button" data-g-event="cta" data-set-platform="win64" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download for Windows</a>
+                <p>
+                  <span class="alt-platform">For Windows 10/11</span>
+                </p>
+              </div>
+              <div class="eula-mac">
+                <a class="button eula-download-button" data-g-event="cta" data-set-platform="mac" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download for Mac</a>
+                <p>
+                  <span class="alt-platform">For Mac OS X 10.6 or later</span>
+                </p>
+              </div>
+              <div class="eula-linux">
+                <a class="button show-linux eula-download-button" data-g-event="cta" data-set-platform="linux" href="https://stenoip.github.io/ringzauber-site/intl/en/Ringzauber/browser/desktop/#">Download for Linux</a>
+                <p>
+                  <span class="alt-platform">Debian/Ubuntu/Fedora/openSUSE</span>
+                </p>
+              </div>
+              <div class="mobile-options">
+                <h3>
+                  Download for phone or tablet
+                </h3>
+                <ul class="options-list">
+                  <li>
+                    <a data-g-event="cta" href="https://play.stenoip.github.io/ringzauber-site/store/apps/details?id=com.android.Ringzauber&amp;pcampaignid=websitedialog">
+                    Android</a>
+                  </li>
+                  <li>
+                    <a data-g-event="cta" href="https://itunes.apple.com/us/app/Ringzauber/id535886823">iOS</a>
+                  </li>
+                </ul>
+              </div>
+              <h3>
+                Download for another desktop OS
+              </h3>
+              
+          
         </div>
-        
-        <div class="grid-layout grid-2" style="margin-top: 24px;">
-            <div class="feature-card yellow">
-                <h3>Stenoip Play</h3>
-                <h2>Play the best minigames on the web.</h2>
-            </div>
-            <div class="feature-card" style="background-color: white; border: 1px solid #dadce0;">
-                <h3>Stenoip Offices</h3>
-                <h2>Get things done, with or without Wi-Fi.</h2>
-                <div style="font-size: 2rem; margin-top: 20px;">[Office Icons]</div>
-            </div>
+        <div class="modal-dialog-buttons" id="modal-dialog-buttons">
+          <button class="button install-track goog-buttonset-default" data-g-event="eula" data-g-label="eula-acceptinstall" id="eula-accept" name="accept">Accept and Install</button> <span id="throbber"><img alt="" src="./Ringzauber Browser_files/Ringzauber_throbber_fast_16.gif"></span>
         </div>
-    </section>
-
-    <section class="section-container faq-section">
-        <h2 class="section-title" style="text-align: center; margin-bottom: 60px;">FAQ</h2>
-        
-        <div class="faq-item">How do I install Ringzauber?</div>
-        <div class="faq-item">Does Ringzauber work on my operating system?</div>
-        <div class="faq-item">How do I make Ringzauber my default browser?</div>
-        <div class="faq-item">What are Ringzauber's safety settings?</div>
-    </section>
-
+      </div><span tabindex="0" style="display: none; position: absolute;"></span>
+    </div>
+    
 </body>
 </html>
